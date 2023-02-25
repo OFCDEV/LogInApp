@@ -8,7 +8,11 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+
 public class MainActivity extends AppCompatActivity {
+
 
     public void logIn(View view){
         EditText usernameEditText = (EditText) findViewById(R.id.usernameEditText);
@@ -16,6 +20,17 @@ public class MainActivity extends AppCompatActivity {
         Log.i("Username", usernameEditText.getText().toString());
         String uName = usernameEditText.getText().toString();
         String pass =  passwordEditText.getText().toString();
+        try {
+            Class.forName("com.mysql.jdbc.driver");
+            Connection cn= DriverManager.getConnection("jdbc:mysql://localhost:3306/TestDB","root","Mysql@1928");
+            if(cn!=null){
+                Log.i("Username", "Connected....");
+            }else {
+                Log.i("Try Again", "Try Again....");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         Log.i("Password", passwordEditText.getText().toString());
         if(uName .equals("Sibu") && pass.equals("Test")){
             Toast.makeText(this, "Login Successfully", Toast.LENGTH_SHORT).show();
