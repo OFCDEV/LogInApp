@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         String uName = usernameEditText.getText().toString();
         String pass =  passwordEditText.getText().toString();
         try {
-            Class.forName("com.mysql.jdbc.driver");
+            Class.forName("com.mysql.jdbc.Driver");
             Connection cn= DriverManager.getConnection("jdbc:mysql://localhost:3306/TestDB","root","Mysql@1928");
             if(cn!=null){
                 Log.i("Username", "Connected....");
